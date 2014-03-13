@@ -4,10 +4,14 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var logfmt = require("logfmt");
 var http = require('http');
 var path = require('path');
+var Bookshelf = require('./models/bookshelf-client');
+
+// routes
+var routes = require('./routes');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -22,6 +26,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(logfmt.requestLogger());
 
 // development only
 if ('development' == app.get('env')) {
@@ -34,3 +39,8 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+var Game = require('./models/game');
+var game = new Game();
+game.set('name', 'hoge2');
+game.save();
