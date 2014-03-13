@@ -1,8 +1,7 @@
-
-/*
- * GET home page.
- */
+var Game = require('../models/game')
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  Game.count().success(function(count) {
+    res.render('index', {title: 'Express', gameCount: count});
+  });
 };
