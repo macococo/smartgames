@@ -1,0 +1,16 @@
+{
+  "name": "smartgames",
+  "version": "0.0.1",
+  "description": "Smartphone game review site.",
+  "scripts": {
+    "start": "node web.js"
+  },
+  "author": "maco",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "ejs": "*"
+  }
+}
